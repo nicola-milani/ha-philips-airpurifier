@@ -7,6 +7,10 @@ and this project adheres to [Calendar Versioning](https://calver.org/) (`YYYY.MM
 
 ## [Unreleased]
 
+### Fixed
+
+- Platform classes and constants are imported from the Home Assistant component packages (`homeassistant.components.fan`, `.light`, `.number`, `.humidifier`, `.climate`) instead of their `.const` submodules. Importing from `.const` only works on Home Assistant 2026.10 and later, which broke setup on the 2026.4-2026.9 releases the integration claims to support in `hacs.json` with `ImportError: cannot import name 'FanEntityFeature' from 'homeassistant.components.fan.const'`. The package namespace exports these names on every supported release.
+
 ### Security
 
 - Development tooling only (not shipped in the integration): npm `overrides` move `katex` to 0.18 (GHSA-238p-pmpm-9mq7, low) and `smol-toml` to 1.9 (GHSA-r4xh-jqrq-34v2, moderate), both pulled in by `markdownlint-cli2`, whose latest release still pins the vulnerable versions.
