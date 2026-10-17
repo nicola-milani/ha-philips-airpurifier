@@ -5,18 +5,21 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from homeassistant.components.number import NumberEntity, NumberMode
+from homeassistant.components.number import NumberEntity
 from homeassistant.const import ATTR_DEVICE_CLASS, ATTR_ICON, CONF_ENTITY_CATEGORY
 
 from .const import NUMBER_TYPES, FanAttributes
 from .entity import PhilipsAirPurifierEntity
 
 if TYPE_CHECKING:
+    from homeassistant.components.number.const import NumberMode
     from homeassistant.core import HomeAssistant
     from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
     from .__init__ import PhilipsAirPurifierConfigEntry
     from .coordinator import PhilipsAirPurifierCoordinator
+else:
+    from homeassistant.components.number import NumberMode
 
 _LOGGER = logging.getLogger(__name__)
 

@@ -5,14 +5,7 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any
 
-from homeassistant.components.light import (
-    ATTR_BRIGHTNESS,
-    ATTR_EFFECT,
-    EFFECT_OFF,
-    ColorMode,
-    LightEntity,
-    LightEntityFeature,
-)
+from homeassistant.components.light import LightEntity
 from homeassistant.const import ATTR_DEVICE_CLASS, CONF_ENTITY_CATEGORY
 
 from .const import (
@@ -27,11 +20,26 @@ from .const import (
 from .entity import PhilipsAirPurifierEntity
 
 if TYPE_CHECKING:
+    from homeassistant.components.light.const import (
+        ATTR_BRIGHTNESS,
+        ATTR_EFFECT,
+        EFFECT_OFF,
+        ColorMode,
+        LightEntityFeature,
+    )
     from homeassistant.core import HomeAssistant
     from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
     from .__init__ import PhilipsAirPurifierConfigEntry
     from .coordinator import PhilipsAirPurifierCoordinator
+else:
+    from homeassistant.components.light import (
+        ATTR_BRIGHTNESS,
+        ATTR_EFFECT,
+        EFFECT_OFF,
+        ColorMode,
+        LightEntityFeature,
+    )
 
 _LOGGER = logging.getLogger(__name__)
 

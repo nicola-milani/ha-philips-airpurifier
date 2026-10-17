@@ -5,22 +5,28 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any
 
-from homeassistant.components.humidifier import (
-    HumidifierAction,
-    HumidifierDeviceClass,
-    HumidifierEntity,
-    HumidifierEntityFeature,
-)
+from homeassistant.components.humidifier import HumidifierEntity
 
 from .const import HUMIDIFIER_TYPES, FanAttributes, FanFunction
 from .entity import PhilipsAirPurifierEntity
 
 if TYPE_CHECKING:
+    from homeassistant.components.humidifier.const import (
+        HumidifierAction,
+        HumidifierDeviceClass,
+        HumidifierEntityFeature,
+    )
     from homeassistant.core import HomeAssistant
     from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
     from .__init__ import PhilipsAirPurifierConfigEntry
     from .coordinator import PhilipsAirPurifierCoordinator
+else:
+    from homeassistant.components.humidifier import (
+        HumidifierAction,
+        HumidifierDeviceClass,
+        HumidifierEntityFeature,
+    )
 
 _LOGGER = logging.getLogger(__name__)
 

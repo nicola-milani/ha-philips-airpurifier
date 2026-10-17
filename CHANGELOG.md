@@ -9,7 +9,7 @@ and this project adheres to [Calendar Versioning](https://calver.org/) (`YYYY.MM
 
 ### Fixed
 
-- Platform classes and constants are imported from the Home Assistant component packages (`homeassistant.components.fan`, `.light`, `.number`, `.humidifier`, `.climate`) instead of their `.const` submodules. Importing from `.const` only works on Home Assistant 2026.10 and later, which broke setup on the 2026.4-2026.9 releases the integration claims to support in `hacs.json` with `ImportError: cannot import name 'FanEntityFeature' from 'homeassistant.components.fan.const'`. The package namespace exports these names on every supported release.
+- Setup no longer fails on Home Assistant 2026.4-2026.9 with `ImportError: cannot import name 'FanEntityFeature' from 'homeassistant.components.fan.const'`. The platforms imported `FanEntityFeature`, the light `ATTR_*`/`EFFECT_OFF`/`ColorMode`/`LightEntityFeature` names, `NumberMode`, the `Humidifier*` classes and the climate `SWING_*`/`ClimateEntityFeature`/`HVACMode` from the components' `.const` submodules. `fan/const.py` first appears in 2026.8 and only gained `FanEntityFeature` in 2026.10, so those imports require 2026.10 even though `hacs.json` declares support from 2026.4. At runtime these names now come from the component packages, which export them on every supported release; the `.const` imports are kept under `TYPE_CHECKING` so static analysis still resolves them to their defining module.
 
 ### Security
 

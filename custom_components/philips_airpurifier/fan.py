@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any
 
-from homeassistant.components.fan import FanEntity, FanEntityFeature
+from homeassistant.components.fan import FanEntity
 from homeassistant.util.percentage import (
     ordered_list_item_to_percentage,
     percentage_to_ordered_list_item,
@@ -15,11 +15,14 @@ from .const import SWITCH_OFF, SWITCH_ON
 from .entity import PhilipsAirPurifierEntity
 
 if TYPE_CHECKING:
+    from homeassistant.components.fan.const import FanEntityFeature
     from homeassistant.core import HomeAssistant
     from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
     from .__init__ import PhilipsAirPurifierConfigEntry
     from .coordinator import PhilipsAirPurifierCoordinator
+else:
+    from homeassistant.components.fan import FanEntityFeature
 
 _LOGGER = logging.getLogger(__name__)
 

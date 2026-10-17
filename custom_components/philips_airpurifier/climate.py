@@ -5,24 +5,31 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any
 
-from homeassistant.components.climate import (
-    SWING_OFF,
-    SWING_ON,
-    ClimateEntity,
-    ClimateEntityFeature,
-    HVACMode,
-)
+from homeassistant.components.climate import ClimateEntity
 from homeassistant.const import ATTR_TEMPERATURE, UnitOfTemperature
 
 from .const import HEATER_TYPES, SWITCH_OFF, SWITCH_ON, FanAttributes, PresetMode
 from .entity import PhilipsAirPurifierEntity
 
 if TYPE_CHECKING:
+    from homeassistant.components.climate.const import (
+        SWING_OFF,
+        SWING_ON,
+        ClimateEntityFeature,
+        HVACMode,
+    )
     from homeassistant.core import HomeAssistant
     from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
     from .__init__ import PhilipsAirPurifierConfigEntry
     from .coordinator import PhilipsAirPurifierCoordinator
+else:
+    from homeassistant.components.climate import (
+        SWING_OFF,
+        SWING_ON,
+        ClimateEntityFeature,
+        HVACMode,
+    )
 
 _LOGGER = logging.getLogger(__name__)
 
